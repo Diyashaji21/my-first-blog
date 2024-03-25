@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Comments</title>
+    <!-- Add your CSS styles here if needed -->
+    <style>
+        /* Add your CSS styles for comments */
+        .comment {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .comment p {
+            margin: 5px 0;
+        }
+        /* Add more CSS styles as needed */
+    </style>
+</head>
+<body>
+    <h1>All Comments</h1>
+    <!-- Display comments -->
+    {% if comments %}
+        {% for comment in comments %}
+            <div class="comment">
+                <p><strong>User:</strong> {{ comment.author }}</p>
+                <p><strong>Post:</strong> <a href="{% url 'post_detail' comment.post.pk %}">{{ comment.post.title }}</a></p>
+                <p><strong>Comment:</strong> {{ comment.text }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No comments found.</p>
+    {% endif %}
+</body>
+</html>

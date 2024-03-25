@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comment Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+
+        li:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        strong {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Comment Status page</h1>
+    <ul>
+        {% for comment in feedback %}
+            <li>
+                <strong>Post:</strong> {{ comment.post.title }}<br>
+                <strong>Author:</strong> {{ comment.author }}<br>
+                <strong>Text:</strong> {{ comment.text }}<br>
+                <strong>Created At:</strong> {{ comment.created_date }}<br>
+                {% if comment.approved_comment %}
+                    <strong style="color: green;">Status: Approved</strong><br>
+                {% else %}
+                    <strong style="color: red;">Status: Pending Approval</strong><br>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>No comments submitted.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
